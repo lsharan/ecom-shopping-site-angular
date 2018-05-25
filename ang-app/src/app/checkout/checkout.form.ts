@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, FormControl,ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormControl, ReactiveFormsModule,Validators } from '@angular/forms';
 
 
 @Component({
@@ -12,17 +12,17 @@ export class CheckoutFormComponent {
 
   constructor(fb: FormBuilder) {
     this.checkoutForm = fb.group({
-      'firstName': '',
+      'firstName': [null, Validators.required],
       'lastName': '',
-      'address1': '',
-      'address2': '',
+      'address1': [null, Validators.required],
+      'address2': [null, Validators.required],
       'pinCode': '',
-      'mobileNo': '',
-      'cardNumber': '',
+      'mobileNo': [null, Validators.compose([Validators.required, Validators.minLength(10), Validators.maxLength(10)])],
+      'cardNumber': [null, Validators.compose([Validators.required, Validators.minLength(16), Validators.maxLength(16)])],
       'nameOnCard': '',
-      'month': '',
-      'year': '',
-      'cvv': ''
+      'month': [null, Validators.compose([Validators.required, Validators.minLength(1), Validators.maxLength(2)])],
+      'year': [null, Validators.compose([Validators.required, Validators.minLength(4), Validators.maxLength(4)])],
+      'cvv': [null, Validators.compose([Validators.required, Validators.minLength(3), Validators.maxLength(3)])]
     })
   }
 

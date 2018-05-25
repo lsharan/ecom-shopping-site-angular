@@ -3,57 +3,58 @@
     <br>
     <!-- Right of the bat, we no longer declare a local variable but use the formGroup directive and set it the complexForm object we defined in the constructor. Throughout the form, we will reference the complexForm root object as can be seen in the submitForm function.-->
     <form [formGroup]="checkoutForm" (ngSubmit)="submitForm(checkoutForm.value)">
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{'has-error':!checkoutForm.controls['firstName'].valid && checkoutForm.controls['firstName'].touched}">
         <label>First Name:</label>
         <!-- Rather than set an ngModel, we use the formControl directive to sync our input to the complexForm object. Notice that we are also setting the attribute we wish the corresponding input to sync with. We no longer need the name attribute, but can optionally add it. -->
         <input class="form-control" type="text" placeholder="John" [formControl]="checkoutForm.controls['firstName']">
+        <div *ngIf="checkoutForm.controls['firstName'].hasError('required') && checkoutForm.controls['firstName'].touched" class="alert alert-danger">You must include a first name.</div>
       </div>
-      <div class="form-group">
+      <div class="form-group ">
         <label>Last Name</label>
-        <input class="form-control" type="text" placeholder="Doe" [formControl]="checkoutForm.controls['lastName']">
+        <input class="form-control " type="text" placeholder="Doe" [formControl]="checkoutForm.controls['lastName']">
       </div>
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{'has-error':!checkoutForm.controls['address1'].valid && checkoutForm.controls['address1'].touched}">
         <label>Address 1</label>
         <input class="form-control" type="text"  [formControl]="checkoutForm.controls['address1']">
       </div>
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{'has-error':!checkoutForm.controls['address2'].valid && checkoutForm.controls['address2'].touched}">
         <label>Address 2</label>
         <input class="form-control" type="text"  [formControl]="checkoutForm.controls['address2']">
       </div>
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{'has-error':!checkoutForm.controls['pinCode'].valid && checkoutForm.controls['pinCode'].touched}">
         <label>Pin Code</label>
         <input class="form-control" type="number"  [formControl]="checkoutForm.controls['pinCode']">
       </div>
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{'has-error':!checkoutForm.controls['mobileNo'].valid && checkoutForm.controls['mobileNo'].touched}">
         <label>Mobile Number</label>
-        <input class="form-control" type="number"  [formControl]="checkoutForm.controls['pinCode']">
+        <input class="form-control" type="number"  [formControl]="checkoutForm.controls['mobileNo']">
       </div>
       
       <h3>Payment</h3>
 
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{'has-error':!checkoutForm.controls['cardNumber'].valid && checkoutForm.controls['cardNumber'].touched}">
         <label>Card Number</label>
         <input class="form-control" type="number"  [formControl]="checkoutForm.controls['cardNumber']">
       </div>
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{'has-error':!checkoutForm.controls['nameOnCard'].valid && checkoutForm.controls['nameOnCard'].touched}">
         <label>Name on Card</label>
-        <input class="form-control" type="text"  [formControl]="checkoutForm.controls['address2']">
+        <input class="form-control" type="text"  [formControl]="checkoutForm.controls['nameOnCard']">
       </div>
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{'has-error':!checkoutForm.controls['month'].valid && checkoutForm.controls['month'].touched}">
         <label>Month</label>
         <input class="form-control" type="number"  [formControl]="checkoutForm.controls['month']">
       </div>
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{'has-error':!checkoutForm.controls['year'].valid && checkoutForm.controls['year'].touched}">
         <label>Year</label>
         <input class="form-control" type="number"  [formControl]="checkoutForm.controls['year']">
       </div>
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{'has-error':!checkoutForm.controls['cvv'].valid && checkoutForm.controls['cvv'].touched}">
         <label>CVV</label>
         <input class="form-control" type="number"  [formControl]="checkoutForm.controls['cvv']">
       </div>
 
       <div class="form-group">
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-default" [disabled]="!checkoutForm.valid">Submit</button>
       </div>
     </form>
   </div>
