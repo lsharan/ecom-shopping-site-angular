@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-callback',
@@ -6,13 +7,15 @@ import { Component, OnInit } from '@angular/core';
     <p>
       Loading...
     </p>
-  `
+  `,
+  styles: []
 })
 export class CallbackComponent implements OnInit {
 
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.authService.handleLoginCallback();
   }
 
 }
